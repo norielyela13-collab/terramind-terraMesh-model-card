@@ -22,11 +22,27 @@ Documento elaborado según los principios de Mitchell, Wu, Zaldivar, Barnes, Vas
 | Repositorio oficial de código | <https://github.com/IBM/terramind> |
 | Publicación de pesos | Organización `ibm-esa-geospatial` en Hugging Face: <https://huggingface.co/ibm-esa-geospatial/TerraMind-1.0-base> |
 | Versión documentada | Familia TerraMind 1.0. Fichas disponibles: `TerraMind-1.0-tiny`, `TerraMind-1.0-small`, `TerraMind-1.0-base`, `TerraMind-1.0-large`. En los artículos se reportan sobre todo las variantes **TerraMindv1-B** (base), **TerraMindv1-L** (large) y **TerraMindv1-B-single** (versión monomodal/escala única) |
-| Variante utilizada en este proyecto | **Pendiente de confirmación.** La actividad no especifica la variante concreta; por ello esta ficha documenta la familia TerraMind 1.0 y utiliza los resultados de `v1-B` y `v1-L` como referencia, indicando siempre a qué variante corresponde cada cifra |
+| Variante utilizada en este proyecto | **Pendiente de confirmación** (ver detalle más abajo). La actividad no especifica la variante concreta y la revisión del material disponible del proyecto (14 de octubre de 2026) no arrojó evidencia que permita afirmar cuál se usó. Por ello esta ficha documenta la familia TerraMind 1.0 en general y utiliza los resultados de `v1-B` y `v1-L` como referencia, indicando siempre a qué variante corresponde cada cifra publicada |
 | Fecha de elaboración de la ficha | 14 de octubre de 2026 |
 | Fuentes oficiales | Repositorio GitHub de IBM/terramind; fichas de Hugging Face de las cuatro variantes; documentación de TerraTorch; artículo Jakubik et al. (2025) |
 
 **Referencia bibliográfica principal:** Jakubik, J., Yang, F., Blumenstiel, B., Scheurer, E., Sedona, R., Maurogiovanni, S., … Longépé, N. (2025). *TerraMind: Large-Scale Generative Multimodality for Earth Observation*. IEEE/CVF International Conference on Computer Vision (ICCV) 2025. Preprint: <https://arxiv.org/abs/2504.11171> (v5, actualizada el 17 de junio de 2026).
+
+### Revisión del material del proyecto para identificar la variante (14 de octubre de 2026)
+
+**[Pendiente de confirmación]** Se revisó el material informático disponible del proyecto buscando el identificador del modelo, los pesos o *checkpoints* cargados, las llamadas a las funciones de carga (por ejemplo, `from_pretrained(...)`) y cualquier configuración que nombrara una variante concreta (`tiny`, `small`, `base` o `large`). Resultado de la revisión:
+
+| Qué se revisó | Dónde | Resultado |
+| --- | --- | --- |
+| Repositorio de documentación (este taller) | `README.md`, `MODEL_CARD.md`, `DATASET_CARD.md`, `REFERENCES.md` | No contiene código ni identificador de variante; solo documentación de la familia TerraMind 1.0 |
+| Proyecto de clasificación de cobertura del suelo | `clasificacion-cobertura-armenia/` (`config/config.yaml`, `src/*.py`) | **No utiliza TerraMind.** El modelo declarado en `config/config.yaml` es `nvidia/segformer-b2-finetuned-ade-512-512` (segmentación con Sentinel-2 vía Google Earth Engine) |
+| Presentación del trabajo | `TerraMind_Washignton.pptx` | Describe el uso del **Encoder Transformer de TerraMind** para proyectar escenas a un espacio latente (tokens TiM) sobre la Sabana de Bogotá, con TerraMesh como fuente de datos, pero **no nombra la variante** (`tiny`/`small`/`base`/`large`) ni muestra la llamada de carga del modelo |
+| Documento teórico | `IBM TerraMind.docx` | Menciona las variantes publicadas (cita `TerraMind-1.0-base` y `TerraMind-1.0-large`) como **variantes disponibles**, sin indicar cuál se empleó en el proyecto |
+| Notebooks de Google Colab | Buscados en el equipo (`*.ipynb`) | **No se encontró ningún notebook del proyecto** en el equipo; los únicos archivos `.ipynb` presentes son notebooks de ejemplo incluidos por defecto en extensiones de VS Code. Los notebooks de Colab no están sincronizados localmente, por lo que su contenido no pudo revisarse |
+
+**Conclusión de la revisión:** no hay evidencia suficiente en el material disponible para afirmar qué variante se utilizó. La documentación general de TerraMind 1.0 (artículos, fichas de Hugging Face y repositorio oficial) se presenta en esta ficha de forma independiente de la implementación específica del proyecto, y **las cifras de rendimiento citadas corresponden siempre a la variante que se indica en cada apartado** (`TerraMindv1-B`, `TerraMindv1-L`, etc.), no a una ejecución propia del proyecto.
+
+**Información que faltaría para confirmarlo:** alguna de las siguientes piezas del trabajo: el notebook o script que carga el modelo (donde aparezca algo como `ibm-esa-geospatial/TerraMind-1.0-base` o `terramind_v1_base`), la ruta o nombre del archivo de pesos descargado (por ejemplo, `TerraMind_v1_base.pt`), o la salida por consola del proceso de inferencia, que suele imprimir el identificador del modelo cargado. Si se dispone de alguna de estas evidencias, este apartado debe actualizarse con el nombre exacto de la variante.
 
 ---
 
