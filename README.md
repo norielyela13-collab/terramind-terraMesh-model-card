@@ -47,4 +47,4 @@ El documento `DATASET_CARD.md` describe la identificación de TerraMesh, su comp
 - Artículo de referencia sobre *Model Cards*: <https://arxiv.org/abs/1810.03993>
 - Plantillas de Hugging Face utilizadas como guía de estructura: <https://github.com/huggingface/huggingface_hub/tree/main/src/huggingface_hub/templates>
 
-> **Nota:** la URL pública de este repositorio se añadirá cuando el repositorio haya sido creado y publicado en GitHub; en este documento no se incluye ninguna dirección que aún no exista.
+> **Nota:** este repositorio está publicado en <https://github.com/norielyela13-collab/terramind-terraMesh-model-card> (verificado al momento de su publicación el 14 de octubre de 2026).
